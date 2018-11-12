@@ -1,4 +1,9 @@
 <?php
+// Forca o php mostrar os erros
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
 session_start();
 /*
 *Checa se a variavel ta vazia
@@ -28,6 +33,7 @@ if(empty($_SESSION['id'])){
         cursor: pointer;
     }
     </style>
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -94,7 +100,7 @@ if(empty($_SESSION['id'])){
         // Muda action do form para cadastro
         function cadastrar() {
             if (confirm("Confirmar cadastramento da propriedade?")) {
-                $("#form_prop").attr("action", "cadastroProp.php");
+                $("#form_prop").attr("action", "controller/PropriedadeController.php?action=cadastrar");
                 $("#form_prop").submit();
             }
         }
@@ -106,7 +112,7 @@ if(empty($_SESSION['id'])){
                 $id_prop = $(".selecionada").find("#id_prop").text();
                 
                 // Modificando o action do formulario para o arquivo de update e passando o id na url
-                $("#form_prop").attr("action", "update_prop.php?id_prop="+$id_prop);
+                $("#form_prop").attr("action", "controller/PropriedadeController.php?action=editar&id_prop="+$id_prop);
 
                 // Dando submit no formulario   
                 $("#form_prop").submit();
@@ -120,7 +126,7 @@ if(empty($_SESSION['id'])){
                 $id_prop = $(".selecionada").find("#id_prop").text();
                 
                 // Modificando o action do formulario para o arquivo de remocao e passando o id na url
-                $("#form_prop").attr("action", "delete_prop.php?id_prop="+$id_prop);
+                $("#form_prop").attr("action", "controller/PropriedadeController.php?action=remover&id_prop="+$id_prop);
 
                 // Dando submit no formulario   
                 $("#form_prop").submit();
@@ -131,26 +137,31 @@ if(empty($_SESSION['id'])){
  </head>
 <body>
 
+    <!-- Incluindo menu da página -->
+    <?php require_once "templates/header.php"; ?>
+
     <!-- Modal -->
-    <div class="modal fade" id="modalMsg" role="dialog">
-        <div class="modal-dialog">
-
-        <!-- Modal content-->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" id="tituloModalCadastro"></h4>
-            </div>
-            <div class="modal-body">
-            <p id="txtModal"></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Título do modal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Salvar mudanças</button>
+        </div>
         </div>
     </div>
+    </div>
+    
+    
 
     <form id="form_prop" action="" method="POST" style="padding: 10px;">
         <div class="form-row">
@@ -209,11 +220,12 @@ if(empty($_SESSION['id'])){
                         </div>
                         <select name="relevo" class="custom-select" id="relevo">
                             <option	disabled selected>Selecione	o relevo</option>
-                            <option	value="arenoso">Arenoso</option>
-                            <option	value="argiloso">Argiloso</option>
-                            <option	value="arenoArg">Areno Argiloso</option>
-                            <option value="siltoso">Siltoso</option>
-                            <option value="outro">Outro</option>
+                            <option	value="plano">Plano</option>
+                            <option	value="suave">Suave ondulado</option>
+                            <option value="ondulado">Ondulado</option>
+                            <option	value="forteOndulado">Forte ondulado</option>
+                            <option value="montanhoso">Montanhoso</option>
+                            <option	value="escarpa">Escarpa</option>
                         </select>
                     </div>
                 </div>
@@ -224,12 +236,11 @@ if(empty($_SESSION['id'])){
                         </div>
                         <select name="solo" class="custom-select" id="solo">
                             <option	disabled selected>Selecione	o solo</option>
-                            <option	value="plano">Plano</option>
-                            <option	value="suave">Suave ondulado</option>
-                            <option value="ondulado">Ondulado</option>
-                            <option	value="forteOndulado">Forte ondulado</option>
-                            <option value="montanhoso">Montanhoso</option>
-                            <option	value="escarpa">Escarpa</option>
+                            <option	value="arenoso">Arenoso</option>
+                            <option	value="argiloso">Argiloso</option>
+                            <option	value="arenoArg">Areno Argiloso</option>
+                            <option value="siltoso">Siltoso</option>
+                            <option value="outro">Outro</option>
                         </select>
                     </div>
                 </div>
@@ -270,13 +281,13 @@ if(empty($_SESSION['id'])){
             <button type="button" id="btn_cadastrar" class="btn btn-md btn-primary" onclick="cadastrar();">Cadastrar</button>    
             <button type="button" id="btn_salvar" class="btn btn-md btn-primary" disabled onclick="editar();">Salvar</button>    
             <button type="button" id="btn_editar" class="btn btn-md btn-primary" disabled>Editar</button>    
-            <button type="button" id="btn_apagar" class="btn btn-md btn-primary" disabled onclick="apagar();">Apagar</button>    
+            <button type="button" id="btn_apagar" class="btn btn-md btn-danger" disabled onclick="apagar();">Apagar</button>    
         </div>
     </form> <!-- Fim formulario propriedade-->
 
 
     <!-- Tabela de Propriedades -->
-    <table id="users_table" class="table table-hover table-bordered col-4">
+    <table id="users_table" class="table table-hover table-bordered col-4" style="margin-left: 10px;">
 
         <thead class="thead-dark">
             <tr>
@@ -296,9 +307,10 @@ if(empty($_SESSION['id'])){
         <tbody>
             <?php
                     include_once 'dao/PropriedadeDAO.php';
-                    include_once 'models/Propriedade.php';
+                    include_once 'models/PropriedadeModel.php';
                     $dao = new PropriedadeDAO();
-                    $propriedades = $dao->pesquisar();
+                    $id_dono = $_SESSION["id"];
+                    $propriedades = $dao->pesquisar($id_dono);
                     foreach ($propriedades as $p):
             ?>
                 <tr>

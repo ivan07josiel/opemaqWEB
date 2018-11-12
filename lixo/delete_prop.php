@@ -17,7 +17,7 @@
 
       header("Location: propriedade.php");
     }else{
-      $mensagem = "<script>alert('Erro ao remover propriedade: $nome_propriedade');</script>";
+      $mensagem = "<script>alert('Erro ao remover propriedade');</script>";
       $_SESSION['msgCadastro'] = $mensagem;
       
       header("Location: propriedade.php");

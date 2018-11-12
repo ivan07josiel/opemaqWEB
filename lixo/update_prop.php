@@ -29,6 +29,7 @@
 
       header("Location: propriedade.php");
     }else{
+      $mensagem = "<script>$('#modalMsg').modal('show')</script>";
       $mensagem = "<script>alert('Erro ao atualizar propriedade: $nome_propriedade');</script>";
       $_SESSION['msgCadastro'] = $mensagem;
       
