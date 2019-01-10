@@ -2,7 +2,27 @@
 
 @section('title', 'Análise Operacional')
 
+@section('css')
+    <!-- Fullcalendar CSS -->
+    <link href="{{ asset('vendor/adminlte/vendor/fullcalendar/css/fullcalendar.min.css') }}" rel='stylesheet' />
+    <link href="{{ asset('vendor/adminlte/vendor/fullcalendar/css/fullcalendar.print.min.css') }}" rel='stylesheet' media='print' />
+    @endsection
+    
 @section('js')
+    <!-- Fullcalendar JS -->
+    <script src="{{ asset('vendor/adminlte/vendor/fullcalendar/js/moment.min.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/vendor/fullcalendar/js/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+            });
+        });
+    </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     google.charts.load('current', {'packages':['timeline'], 'language': 'pt-br'});
@@ -51,14 +71,10 @@
                 Nova Operação Agrícola
             </a>
 
-            <div class="box-tools">
-              <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control pull-right" placeholder="Pesquisar">
-
-                <div class="input-group-btn">
-                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
           </div>
           <!-- /.box-header -->
@@ -97,10 +113,10 @@
         <!-- /.box -->
       </div>
 
-      <div class="col-xs-12">
+      <div class="col-xs-12" hidden>
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Linha temporal das operações</h3>
+                    <h3 class="box-title">Cronograma - Linha temporal das operações</h3>
                 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -113,6 +129,17 @@
                 </div>
               <!-- /.box-body -->
             </div>    
+      </div>
+
+      <div class="col-xs-8">
+        <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
       </div>
 </div>
 @stop

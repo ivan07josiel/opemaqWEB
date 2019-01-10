@@ -49,66 +49,91 @@
                 
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <label for="novo">TDP</label>
-                        <input type="text" class="form-control input-lg" value="{{$trator->tdp}}" id="tdp" name="tdp">
+                        <label for="tdp">TDP</label>
+                        <select class="form-control input-lg" id="tdp" name="tdp">
+                            <option value="540" {{ $trator->tdp == '540' ? 'selected' : '' }}>540 rpm</option>
+                            <option value="1000" {{ $trator->tdp == '1000' ? 'selected' : '' }}>1000 rpm</option>
+                        </select>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="novo">Tração</label>
-                        <input type="text" class="form-control input-lg" value="{{$trator->tracao}}" id="tracao" name="tracao">
+                    <div class="form-group col-md-2">
+                        <label for="tracao">Tração</label>
+                        <select class="form-control input-lg" id="tracao" name="tracao">
+                            <option value="4x2" {{ $trator->tracao == '4x2' ? 'selected' : '' }}>4x2</option>
+                            <option value="4x2tda" {{ $trator->tracao == '4x2tda' ? 'selected' : '' }}>4x2 TDA</option>
+                            <option value="4x4" {{ $trator->tracao == '4x4' ? 'selected' : '' }}>4x4</option>
+                        </select>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="novo">Motor</label>
+                    <div class="form-group col-md-2">
+                        <label for="motor">Motor</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->motor}}" id="motor" name="motor">
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Cilíndros</label>
+                        <label for="transmissao">Transmissão</label>
+                        <input type="text" class="form-control input-lg" value="{{$trator->transmissao}}" id="transmissao" name="transmissao">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cilindro">Cilíndros</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->cilindro}}" id="cilindro" name="cilindro">
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Sucata</label>
+                        <label for="sucata">Sucata</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->sucata}}" id="sucata" name="sucata">
                     </div>
                 </div>
             
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <label for="novo">Hrs estima/ano</label>
+                        <label for="horas_estimadas">Hrs estima/ano</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->horas_estimadas}}" id="horas_estimadas" name="horas_estimadas">
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="novo">Aspiração</label>
+                    <div class="form-group col-md-2">
+                        <label for="aspiracao">Aspiração</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->aspiracao}}" id="aspiracao" name="aspiracao">
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="novo">Potência</label>
+                    <div class="form-group col-md-2">
+                        <label for="potencia">Potência (cv)</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->potencia}}" id="potencia" name="potencia">
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Ano</label>
+                        <label for="lastro">Lastro (kgf)</label>
+                        <input type="text" class="form-control input-lg" value="{{$trator->lastro}}" id="lastro" name="lastro">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="ano">Ano</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->ano}}" id="ano" name="ano">
                         <small class="text-muted form-text">(aaaa)</small>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Uso anual</label>
+                        <label for="uso_anual">Uso anual</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->uso_anual}}" id="uso_anual" name="uso_anual">
                         <small class="text-muted form-text">(horas)</small>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Hidráulico Dianteiro</label>
-                        <input type="text" class="form-control input-lg" value="{{$trator->hidraulico}}" id="hidraulico" name="hidraulico">
+                        <label for="hidraulico">Hidráulico Dianteiro</label>
+                        <select class="form-control input-lg" id="hidraulico" name="hidraulico">
+                            <option value="sim" {{ $trator->hidraulico == 'sim' ? 'selected' : '' }}>Sim</option>
+                            <option value="nao" {{ $trator->hidraulico == 'nao' ? 'selected' : '' }}>Não</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="novo">Cor</label>
+                        <label for="cor">Cor</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->cor}}" id="cor" name="cor">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="novo">Novo</label>
-                        <input type="text" class="form-control input-lg" value="{{$trator->novo}}" id="novo" name="novo">
+                        <select class="form-control input-lg" id="novo" name="novo">
+                            <option value="sim" {{ $trator->novo == 'sim' ? 'selected' : '' }}>Sim</option>
+                            <option value="nao" {{ $trator->novo == 'nao' ? 'selected' : '' }}>Não</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="vida_util">Vida útil</label>
                         <input type="text" class="form-control input-lg" value="{{$trator->vida_util}}" id="vida_util" name="vida_util">
-                        <small class="text-muted form-text">(horas)</small>
+                        <small class="text-muted form-text">(anos)</small>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="valor">Valor Real</label>
+                        <input type="number" class="form-control input-lg" value="{{$trator->valor}}" id="valor" name="valor" placeholder="Valor R$">
                     </div>
                 </div>
             </div> <!-- box-body -->

@@ -56,7 +56,7 @@
                     
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="trator">Implemento</label>
+                            <label for="trator">Trator</label>
                             <select name="id_trator" id="trator" class="form-control input-lg">
                                 @foreach ($tratores as $trator)
                                     <option value="{{$trator->id}}"> {{$trator->apelido}} </option>

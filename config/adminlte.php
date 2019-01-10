@@ -162,6 +162,7 @@ return [
                 ],
             ],
         ],
+        /*
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
@@ -211,6 +212,7 @@ return [
                 ],
             ],
         ],
+        */
         
     ],
 

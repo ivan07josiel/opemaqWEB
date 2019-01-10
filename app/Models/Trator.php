@@ -10,10 +10,10 @@ class Trator extends Model
 
     // Define quais campos serão aceitos para inserção no BD
     protected $fillable = [
-        'id_usuario', 'apelido', 'marca', 'modelo', 'novo', 
-        'vida_util', 'tdp', 'tracao', 'motor', 'cilindro', 
-        'sucata', 'horas_estimadas','aspiracao', 'potencia',
-        'ano', 'uso_anual', 'hidraulico', 'cor', 'etrator'
+        'id_usuario', 'apelido', 'marca', 'modelo', 'novo', 'transmissao',
+        'vida_util', 'tdp', 'tracao', 'motor', 'cilindro', 'lastro',
+        'sucata', 'horas_estimadas','aspiracao', 'potencia', 'ano',
+        'uso_anual', 'hidraulico', 'cor', 'etrator', 'valor',
 
     ];
 

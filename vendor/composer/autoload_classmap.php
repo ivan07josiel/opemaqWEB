@@ -12,6 +12,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\CMecanizadoController' => $baseDir . '/app/Http/Controllers/Admin/CMecanizadoController.php',
     'App\\Http\\Controllers\\Admin\\FuncaoController' => $baseDir . '/app/Http/Controllers/Admin/FuncaoController.php',
     'App\\Http\\Controllers\\Admin\\FuncionarioController' => $baseDir . '/app/Http/Controllers/Admin/FuncionarioController.php',
+    'App\\Http\\Controllers\\Admin\\OperacaoController' => $baseDir . '/app/Http/Controllers/Admin/OperacaoController.php',
     'App\\Http\\Controllers\\Admin\\PropriedadeController' => $baseDir . '/app/Http/Controllers/Admin/PropriedadeController.php',
     'App\\Http\\Controllers\\Admin\\TratorController' => $baseDir . '/app/Http/Controllers/Admin/TratorController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

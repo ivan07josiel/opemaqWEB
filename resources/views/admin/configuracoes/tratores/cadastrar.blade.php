@@ -49,16 +49,27 @@
                         
                         <div class="row">
                             <div class="form-group col-md-2">
-                                <label for="novo">TDP</label>
-                                <input type="text" class="form-control input-lg" id="tdp" name="tdp">
+                                <label for="tdp">TDP</label>
+                                <select class="form-control input-lg" id="tdp" name="tdp">
+                                    <option value="540" selected>540 rpm</option>
+                                    <option value="1000">1000 rpm</option>
+                                </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="novo">Tração</label>
-                                <input type="text" class="form-control input-lg" id="tracao" name="tracao">
+                                <select class="form-control input-lg" id="tracao" name="tracao">
+                                    <option value="4x2" selected>4x2</option>
+                                    <option value="4x2tda">4x2 TDA</option>
+                                    <option value="4x4">4x4</option>
+                                </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="novo">Motor</label>
                                 <input type="text" class="form-control input-lg" id="motor" name="motor">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="transmissao">Transmissão</label>
+                                <input type="text" class="form-control input-lg" id="transmissao" name="transmissao">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="novo">Cilíndros</label>
@@ -66,7 +77,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="novo">Sucata</label>
-                                <input type="text" class="form-control input-lg" id="sucata" name="sucata">
+                                <input type="number" class="form-control input-lg" id="sucata" name="sucata" placeholder="Valor R$">
                             </div>
                     </div>
                     
@@ -75,13 +86,17 @@
                             <label for="novo">Hrs estima/ano</label>
                             <input type="text" class="form-control input-lg" id="horas_estimadas" name="horas_estimadas">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="novo">Aspiração</label>
                             <input type="text" class="form-control input-lg" id="aspiracao" name="aspiracao">
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="novo">Potência</label>
+                        <div class="form-group col-md-2">
+                            <label for="novo">Potência (cv)</label>
                             <input type="text" class="form-control input-lg" id="potencia" name="potencia">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="lastro">Lastro (kgf)</label>
+                            <input type="text" class="form-control input-lg" id="lastro" name="lastro">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="novo">Ano</label>
@@ -94,8 +109,11 @@
                             <small class="text-muted form-text">(horas)</small>
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="novo">Hidráulico Dianteiro</label>
-                            <input type="text" class="form-control input-lg" id="hidraulico" name="hidraulico">
+                            <label for="hidraulico">Hidráulico Dianteiro</label>
+                            <select class="form-control input-lg" id="hidraulico" name="hidraulico">
+                                <option value="sim">Sim</option>
+                                <option value="nao" selected>Não</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="novo">Cor</label>
@@ -103,12 +121,19 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="novo">Novo</label>
-                            <input type="text" class="form-control input-lg" id="novo" name="novo">
+                            <select class="form-control input-lg" id="novo" name="novo">
+                                <option value="sim">Sim</option>
+                                <option value="nao" selected>Não</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="vida_util">Vida útil</label>
                             <input type="text" class="form-control input-lg" id="vida_util" name="vida_util">
-                            <small class="text-muted form-text">(horas)</small>
+                            <small class="text-muted form-text">(anos)</small>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="valor">Valor Real</label>
+                            <input type="number" class="form-control input-lg" id="valor" name="valor" placeholder="Valor R$">
                         </div>
                     </div>
                 </div> <!-- box-body -->

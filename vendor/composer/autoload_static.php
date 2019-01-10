@@ -328,6 +328,7 @@ class ComposerStaticInit7ce8beebb9a9ac982e0289f4dd7275fc
         'App\\Http\\Controllers\\Admin\\CMecanizadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CMecanizadoController.php',
         'App\\Http\\Controllers\\Admin\\FuncaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FuncaoController.php',
         'App\\Http\\Controllers\\Admin\\FuncionarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FuncionarioController.php',
+        'App\\Http\\Controllers\\Admin\\OperacaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OperacaoController.php',
         'App\\Http\\Controllers\\Admin\\PropriedadeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PropriedadeController.php',
         'App\\Http\\Controllers\\Admin\\TratorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TratorController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
