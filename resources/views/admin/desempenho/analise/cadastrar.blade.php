@@ -1,14 +1,5 @@
 @extends('adminlte::page')
 
-@section('css')
-    <style>
-    .select2-selection--multiple {
-        min-height: 45px !important;
-        text-align: center;
-    }
-    </style>
-@endsection
-
 @section('title', 'Cadastro Operação')
 
 @section('content_header')
@@ -82,11 +73,3 @@
     </div>
 </div>
 @stop
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
-@endsection

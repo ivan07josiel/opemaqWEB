@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Models\Operacao;
+use App\Models\Planejamento;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
-class OperacaoController extends Controller
+class PlanejamentoController extends Controller
 {
     public function index()
     {
         // Selecionando os funcionários do BD e juntando com funcoes 
-        $operacoes = DB::table('operacoes')
-                            ->join('propriedades', 'propriedades.id', '=', 'operacoes.id_propriedade')
-                            ->select('operacoes.*', 'propriedades.nome as propriedade')
-                            ->where('operacoes.id_usuario', '=', auth()->user()->id)
+        $planejamentos = DB::table('planejamentos')
+                            ->join('operacoes', 'planejamentos.id_operacao', '=', 'operacoes.id')
+                            ->select('planejamentos.nome', 'planejamentos.id', 'operacoes.nome as nome_operacao')
+                            ->where('planejamentos.id_usuario', '=', auth()->user()->id)
                             ->get();
         
-        return view('admin.desempenho.analise.index', [
-            'operacoes' => $operacoes,
+        return view('admin.desempenho.planejamento.index', [
+            'planejamentos' => $planejamentos,
         ]);
     }
     
@@ -69,10 +70,17 @@ class OperacaoController extends Controller
 
     public function cadastrarView()
     {
-        $propriedades = auth()->user()->propriedades;
-
-        return view('admin.desempenho.analise.cadastrar', [
-            'propriedades' => $propriedades,
+        $operacoes = auth()->user()->operacoes;
+        $conjuntos = auth()->user()->c_mecanizados;
+        $larguraInicial = DB::table('operacoes')
+                            ->join('propriedades', 'operacoes.id_propriedade', '=', 'propriedades.id')
+                            ->where('operacoes.id_usuario', '=', auth()->user()->id)
+                            ->value("propriedades.tamanho");
+        
+        return view('admin.desempenho.planejamento.cadastrar', [
+            'operacoes' => $operacoes,
+            'conjuntos' => $conjuntos,
+            'largura'   => $larguraInicial,
         ]);
     }
 
@@ -99,6 +107,18 @@ class OperacaoController extends Controller
 
     protected function getOperacao($id){
         return auth()->user()->operacoes->find($id);
+    }
+
+    public function getLargura($idOperacao){
+        $operacao = $this->getOperacao($idOperacao);
+        //dd($operacao);
+        $largura = DB::table('propriedades')
+                        ->where('propriedades.id', '=', $operacao->id_propriedade) 
+                        ->where('propriedades.id_usuario', '=', auth()->user()->id)
+                        ->get(['propriedades.tamanho']);
+        
+        return Response::json($largura);
+        
     }
 
     private function validacao($data){

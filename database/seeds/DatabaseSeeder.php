@@ -11,19 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Rada seeders dos usuarios
+        // Roda seeders dos usuarios
         $this->call(UsersTableSeeder::class);
 
-        // Rada seeders das funcoes
+        // Roda seeders das funcoes
         $this->call(FuncoesTableSeeder::class);
 
-        // Rada seeders dos funcionarios
+        // Roda seeders dos funcionarios
         $this->call(FuncionariosTableSeeder::class);
 
-        // Rada seeders dos propriedades
+        // Roda seeders dos propriedades
         $this->call(PropriedadesTableSeeder::class);
 
-        // Rada seeders dos tratores
+        // Roda seeders dos tratores
         $this->call(TratoresTableSeeder::class);
+
+        // Roda seeders dos conjuntos mecanizados
+        $this->call(CMecanizadosTableSeeder::class);
     }
 }

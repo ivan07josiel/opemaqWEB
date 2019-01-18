@@ -86,7 +86,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     // Rotas para paginas de desempenho
     $this->group(['prefix' => 'desempenho'], function(){
         
-        // Rotas para paginas de analise 
+        // Rotas para paginas de analise operacional
         $this->group(['prefix' => 'analise'], function(){
             $this->get('/', 'OperacaoController@index')->name('analise.index');
             $this->post('cadastrar', 'OperacaoController@store')->name('analise.store');
@@ -99,15 +99,16 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 
         });
         
-        // Rotas para paginas de propriedades 
-        $this->group(['prefix' => 'propriedades'], function(){
-            $this->get('/', 'PropriedadeController@index')->name('propriedades.index');
-            $this->post('cadastrar', 'PropriedadeController@store')->name('propriedades.store');
-            $this->get('cadastrar', 'PropriedadeController@cadastrarView')->name('propriedades.cadastrar');
-            $this->get('{id}/editar', 'PropriedadeController@editarView')->name('propriedades.editarView');
-            $this->post('editar', 'PropriedadeController@update')->name('propriedades.update');
-            $this->get('{id}/deletar', 'PropriedadeController@excluirView')->name('propriedades.excluirView');
-            $this->get('{id}/delete', 'PropriedadeController@delete')->name('propriedades.delete');
+        // Rotas para paginas de planejamento 
+        $this->group(['prefix' => 'planejamento'], function(){
+            $this->get('/', 'PlanejamentoController@index')->name('planejamento.index');
+            $this->post('cadastrar', 'PlanejamentoController@store')->name('planejamento.store');
+            $this->get('cadastrar', 'PlanejamentoController@cadastrarView')->name('planejamento.cadastrar');
+            $this->get('{id}/editar', 'PlanejamentoController@editarView')->name('planejamento.editarView');
+            $this->post('editar', 'PlanejamentoController@update')->name('planejamento.update');
+            $this->get('{id}/deletar', 'PlanejamentoController@excluirView')->name('planejamento.excluirView');
+            $this->get('{id}/delete', 'PlanejamentoController@delete')->name('planejamento.delete');
+            $this->get('{idOperacao}/getlargura', 'PlanejamentoController@getLargura')->name('planejamento.getLargura');
 
 
         });

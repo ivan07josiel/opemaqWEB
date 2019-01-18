@@ -10,6 +10,7 @@ use App\Models\Propriedade;
 use App\Models\Trator;
 use App\Models\CMecanizado;
 use App\Models\FuncionarioCMecanizado;
+use App\Models\Operacao;
 
 class User extends Authenticatable
 {
@@ -62,5 +63,9 @@ class User extends Authenticatable
     public function funcionario_c_mecanizados()
     {
         return $this->hasMany(FuncionarioCMecanizado::class, 'id_usuario');
+    }
+    public function operacoes()
+    {
+        return $this->hasMany(Operacao::class, 'id_usuario');
     }
 }

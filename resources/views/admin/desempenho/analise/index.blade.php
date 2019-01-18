@@ -6,20 +6,33 @@
     <!-- Fullcalendar CSS -->
     <link href="{{ asset('vendor/adminlte/vendor/fullcalendar/css/fullcalendar.min.css') }}" rel='stylesheet' />
     <link href="{{ asset('vendor/adminlte/vendor/fullcalendar/css/fullcalendar.print.min.css') }}" rel='stylesheet' media='print' />
-    @endsection
+@endsection
     
 @section('js')
     <!-- Fullcalendar JS -->
     <script src="{{ asset('vendor/adminlte/vendor/fullcalendar/js/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/vendor/fullcalendar/js/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/vendor/fullcalendar/js/pt-br.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,basicWeek,basicDay'
+                    right: 'month,basicWeek,basicDay',
                 },
+                navLinks: true, // can click day/week names to navigate views
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    @foreach ($operacoes as $operacao)    
+                        {
+                            title: '{{$operacao->nome}}',
+                            start: '{{$operacao->data_inicio}}',
+                            end: '{{$operacao->data_fim}}'
+                        },
+                    @endforeach
+                ]
             });
         });
     </script>

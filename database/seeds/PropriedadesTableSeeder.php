@@ -15,8 +15,8 @@ class PropriedadesTableSeeder extends Seeder
         Propriedade::create([
             'nome'              => 'Fazenda Lais',
             'id_usuario'        => '1',
-            'data'              => '2015-10-10',
-            'valor'             => '2040',
+            'data'              => '2017-10-10',
+            'valor'             => '6000000',
             'tamanho'           => '190',
             'percuso_manobra'   => '2',
             'solo'              => 'arenoso',
@@ -29,8 +29,21 @@ class PropriedadesTableSeeder extends Seeder
             'nome'              => 'Fazenda Alto Santo',
             'id_usuario'        => '1',
             'data'              => '2015-10-10',
-            'valor'             => '420',
-            'tamanho'           => '650',
+            'valor'             => '4200000',
+            'tamanho'           => '1650',
+            'percuso_manobra'   => '3',
+            'solo'              => 'arenoso',
+            'declividade'       => '3-8',
+            'fertilidade'       => 'media',
+            'relevo'            => 'ondulado'
+        ]);
+        
+        Propriedade::create([
+            'nome'              => 'Fazenda G-pasf',
+            'id_usuario'        => '1',
+            'data'              => '2016-08-10',
+            'valor'             => '8000000',
+            'tamanho'           => '2450',
             'percuso_manobra'   => '3',
             'solo'              => 'arenoso',
             'declividade'       => '3-8',

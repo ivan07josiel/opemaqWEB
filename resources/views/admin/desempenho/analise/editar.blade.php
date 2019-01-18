@@ -1,25 +1,16 @@
 @extends('adminlte::page')
 
-@section('css')
-    <style>
-    .select2-selection--multiple {
-        min-height: 45px !important;
-        text-align: center;
-    }
-    </style>
-@endsection
-
-@section('title', 'Editar conj. mecanizado')
+@section('title', 'Editar operação')
 
 @section('content_header')
-    <h1>Editar Conjunto Mecanizado</h1>
+    <h1>Editar Operação</h1>
 
     <ol class="breadcrumb">
         <li><a href="/">
             <i class="fa fa-home"></i>            
             Inicio
         </a></li>
-        <li><a href=" {{route('conjuntos.index')}} ">Conjuntos Mecanizados</a></li>
+        <li><a href=" {{route('analise.index')}} ">Análise Operacional</a></li>
         <li><a href="">Editar</a></li>
     </ol>
 @stop
@@ -30,64 +21,47 @@
 <div class="col-md-12 ">
     <div class="box box-danger">
         <div class="box-header with-border">
-            <h3>Dados do Conjunto Mecanizado</h3>
+            <h3>Dados da Operação Agrícola</h3>
         </div>
-        <form id="formFunc" action=" {{route('conjuntos.update')}} " method="POST" > 
+        <form id="formFunc" action=" {{route('analise.update')}} " method="POST" > 
             {{ csrf_field() }}   
-            <input type="hidden" name="id" value="{{$conjunto->id}}">
+            <input type="hidden" name="id" value="{{$operacao->id}}">
             <div class="box-body">
                 <div class="row">
-                    <div class="form-group col-md-4 {{ $errors->has('apelido') ? 'has-error' : '' }}">
-                        <label for="apelido">Apelido*</label>
-                        <input type="text" class="form-control input-lg" value="{{$conjunto->apelido}}" id="apelido" name="apelido" placeholder="Nome do Conjunto Mecanizado">
-                        @if ($errors->has('apelido'))
+                    <div class="form-group col-md-4 {{ $errors->has('nome') ? 'has-error' : '' }}">
+                        <label for="nome">Operação Agrícola*</label>
+                        <input type="text" class="form-control input-lg" value="{{$operacao->nome}}" id="nome" name="nome" placeholder="Nome da Operação">
+                        @if ($errors->has('nome'))
                             <span class="help-block invalid-feedback">
                                 {{ $errors->first() }}
                             </span>
                         @endif
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Funcionários</label>
-                        <select name="funcionarios[]" class="form-control select2" multiple="" data-placeholder="Selecione o(s) funcionário(s)" style="width: 100%; height: 100%;">
-                            @foreach ($funcionarios as $funcionario)
-                                <option value="{{$funcionario->id}}" 
-                                    @foreach ($funcionariosSelected as $item)
-                                        @if ($item->id_funcionario == $funcionario->id)
-                                          {{'selected'}}
-                                          @break
-                                        @endif
-                                    @endforeach
-                                >
-                                    {{$funcionario->nome}}
-                                </option>
+                        <label for="id_propriedade">Propriedade</label>
+                        <select name="id_propriedade" id="id_propriedade" class="form-control input-lg">
+                            @foreach ($propriedades as $propriedade)
+                                <option value="{{$propriedade->id}}" {{ $operacao->id_propriedade == $propriedade->id ? 'selected' : '' }}> {{$propriedade->nome}} </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="trator">Trator</label>
-                        <select name="id_trator" id="trator" class="form-control input-lg">
-                            @foreach ($tratores as $trator)
-                                <option value="{{$trator->id}}"> {{$trator->apelido}} </option>
-                            @endforeach
-                        </select>
+                    <div class="form-group col-md-3">
+                        <label for="data_inicio">Data de Início*</label>
+                        <input type="date" class="form-control input-lg" value="{{$operacao->data_inicio}}" id="data_inicio" name="data_inicio">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="implemento">Implemento</label>
-                        <select name="id_implemento" id="implemento" class="form-control input-lg">
-                            @foreach ($implementos as $implemento)
-                                <option value="{{$implemento->id}}"> {{$implemento->apelido}} </option>
-                            @endforeach
-                        </select>
+                    <div class="form-group col-md-3">
+                        <label for="data_fim">Data de Término*</label>
+                        <input type="date" class="form-control input-lg" value="{{$operacao->data_fim}}" id="data_fim" name="data_fim">
                     </div>
                 </div>
             </div> <!-- box-body -->
 
             <!-- Botoes -->
             <div class="box-footer">
-                <a href=" {{ route('conjuntos.index') }} " id="btn_voltar" class="btn btn-danger btn-lg">
+                <a href=" {{ route('analise.index') }} " id="btn_voltar" class="btn btn-danger btn-lg">
                         <i class="fa fa-angle-left fa-lg"></i>          
                         &nbsp;Cancelar
                 </a>
@@ -101,11 +75,3 @@
 </div>
 </div>
 @stop
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
-@endsection
