@@ -23,6 +23,7 @@ class CreateTratoresTable extends Migration
             $table->string('apelido', 50);
             $table->string('marca', 50)->nullable();
             $table->string('modelo', 50)->nullable();
+            $table->string('valor', 50)->nullable();
             $table->string('novo', 50)->nullable();
             $table->string('vida_util', 50)->nullable();
             $table->string('tdp', 50)->nullable();
@@ -37,6 +38,8 @@ class CreateTratoresTable extends Migration
             $table->string('uso_anual', 50)->nullable();
             $table->string('hidraulico', 50)->nullable();
             $table->string('cor', 50)->nullable();
+            $table->string('transmissao', 50)->nullable();
+            $table->string('lastro', 50)->nullable();
         });
     }
 

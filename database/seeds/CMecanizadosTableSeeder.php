@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\CMecanizado;
+use App\Models\FuncionarioCMecanizado;
 
 class CMecanizadosTableSeeder extends Seeder
 {

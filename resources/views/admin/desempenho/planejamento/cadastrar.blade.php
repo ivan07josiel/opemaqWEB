@@ -45,8 +45,8 @@
                                 @endif
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="operacao">Operação</label>
-                                <select name="operacao" id="operacao" class="form-control input-lg">
+                                <label for="id_operacao">Operação</label>
+                                <select name="id_operacao" id="id_operacao" required class="form-control input-lg">
                                     @foreach ($operacoes as $operacao)
                                         <option value="{{$operacao->id}}"> {{$operacao->nome}} </option>
                                     @endforeach
@@ -68,7 +68,7 @@
                             <div class="form-group col-md-2">
                                 <label for="td">TD</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control input-lg td" id="td" name="td" disabled>
+                                    <input type="number" class="form-control input-lg td" id="td" name="td" readonly>
                                     <div class="input-group-btn">
                                         <p class="btn ml-5">=</p>
                                     </div>
@@ -107,7 +107,7 @@
                             <div class="form-group col-md-2">
                                 <label for="ro">RO</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-lg ro" id="ro" name="ro" disabled>
+                                    <input type="text" class="form-control input-lg ro" id="ro" name="ro" readonly>
                                     <div class="input-group-btn">
                                         <p class="btn ml-5">=</p>
                                     </div>
@@ -130,7 +130,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="cct">CcT</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg cct" id="cct" name="cct" disabled>
+                                        <input type="text" class="form-control input-lg cct" id="cct" name="cct" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -138,7 +138,7 @@
                                 </div>                            
                             <div class="form-group col-md-2">
                                 <label for="l">L</label>
-                            <input type="number" class="form-control input-lg l cctValidation" required min="0" value="{{$largura}}" id="l" name="l" disabled>
+                            <input type="number" class="form-control input-lg l cctValidation" required min="0" value="{{$largura}}" id="l" name="l" readonly>
                                 <small class="text-muted form-text" style="padding: 7px;">Largura de trabalho</small>
                             </div>
 
@@ -150,7 +150,7 @@
                             
                             <div class="form-group col-md-2">
                                 <label for="numpcct">N° Passadas</label>
-                                <input type="number" class="form-control input-lg cctValidation" required min="0" step="1" id="numpcct" name="nump" placeholder="Valor">
+                                <input type="number" class="form-control input-lg cctValidation" required min="0" step="1" id="numpcct" name="numpcct" placeholder="Valor">
                                 <small class="text-muted form-text" style="padding: 7px;">Número de Passadas</small>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="cce">CcE</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg cce" id="cce" name="cce" disabled>
+                                        <input type="text" class="form-control input-lg cce" id="cce" name="cce" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -186,7 +186,7 @@
                             
                             <div class="form-group col-md-2">
                                 <label for="ec">Ec</label>
-                                <input type="number" class="form-control input-lg cceValidation" required min="0" step="1" id="ec" name="ec" placeholder="Valor">
+                                <input type="number" class="form-control input-lg cceValidation" required min="0" step="1" id="eccce" name="eccce" placeholder="Valor">
                                 <small class="text-muted form-text" style="padding: 7px;">Eficiência de campo</small>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="tm">TM</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg tm" id="tm" name="tm" disabled>
+                                        <input type="text" class="form-control input-lg tm" id="tm" name="tm" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -226,7 +226,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="cco">CcO</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg cco" id="cco" name="cco" disabled>
+                                        <input type="text" class="form-control input-lg cco" id="cco" name="cco" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -250,7 +250,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="efc">Ec</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg" required id="efc" name="efc" disabled>
+                                        <input type="text" class="form-control input-lg" required id="efc" name="efc" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -278,7 +278,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="nc">Nc</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg" required id="nc" name="nc" disabled>
+                                        <input type="text" class="form-control input-lg" required id="nc" name="nc" readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>

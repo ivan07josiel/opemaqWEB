@@ -11,6 +11,8 @@ use App\Models\Trator;
 use App\Models\CMecanizado;
 use App\Models\FuncionarioCMecanizado;
 use App\Models\Operacao;
+use App\Models\Planejamento;
+use App\Models\CMecanizadoPlanejamento;
 
 class User extends Authenticatable
 {
@@ -67,5 +69,13 @@ class User extends Authenticatable
     public function operacoes()
     {
         return $this->hasMany(Operacao::class, 'id_usuario');
+    }
+    public function planejamentos()
+    {
+        return $this->hasMany(Planejamento::class, 'id_usuario');
+    }
+    public function c_mecanizados_planejamentos()
+    {
+        return $this->hasMany(CMecanizadoPlanejamento::class, 'id_usuario');
     }
 }

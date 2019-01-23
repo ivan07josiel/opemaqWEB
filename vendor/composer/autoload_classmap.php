@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\CMecanizado' => $baseDir . '/app/Models/CMecanizado.php',
+    'App\\Models\\CMecanizadoPlanejamento' => $baseDir . '/app/Models/CMecanizadoPlanejamento.php',
     'App\\Models\\Funcao' => $baseDir . '/app/Models/Funcao.php',
     'App\\Models\\Funcionario' => $baseDir . '/app/Models/Funcionario.php',
     'App\\Models\\FuncionarioCMecanizado' => $baseDir . '/app/Models/FuncionarioCMecanizado.php',

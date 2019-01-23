@@ -45,7 +45,7 @@ class CreatePlanejamentosTable extends Migration
             $table->double('tpr');
             $table->double('cco');
             $table->double('nc');
-            $table->double('ec');
+            $table->double('efc');
             $table->double('tpro');
             $table->double('timp');
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Planejamento;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
+use App\Models\CMecanizadoPlanejamento;
 
 class PlanejamentoController extends Controller
 {
@@ -39,18 +40,36 @@ class PlanejamentoController extends Controller
         // Inserindo o campo id_usuario na request para inserção no BD
         $request['id_usuario'] = auth()->user()->id;
 
-        // Inserindo no BD pessoa
-        $store = Operacao::create($request->all());
+        try {
+            // Realizando a transação com o BD
+            $result = DB::transaction(function() use($request){
+                // Inserindo na tabela planejamentos
+                $store = Planejamento::create($request->all());
+                
+                // Verifica se a inserção do planejamento ocorreu com sucesso
+                if ($store) {
+                    // Realiza inserções na tabela c_mecanizado_planejamentos
+                    foreach ($request->conjuntos as $key => $id) {
+                        CMecanizadoPlanejamento::create([
+                            'id_c_mecanizado'   => $id,
+                            'id_usuario'        => auth()->user()->id,
+                            'id_planejamento'    => $store->id,
+                        ]);
+                    }
+        
+                    // Redireciona para página index de planejamentos com mensagem
+                    return redirect()->route('planejamento.index')
+                        ->with("success", "Planejamento criado com sucesso!");
+                }
+            });
 
-        if ($store) {
-            // Redireciona para página index de analise com mensagem
-            return redirect()->route('analise.index')
-                ->with("success", "Operação criada com sucesso!");
+            return $result;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('planejamento.index')
+            ->with("error", "Erro ocorrido ao tentar criar Planejamento");
         }
-
-        // Redireciona para página index de analise com mensagem de erro
-        return redirect()->route('analise.index')
-        ->with("error", "Operação criada com sucesso!");
 
     }
 

@@ -13,7 +13,7 @@ class CreateCMecanizadoPlanejamentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('c_mecanizado_planejamentos_', function (Blueprint $table) {
+        Schema::create('c_mecanizado_planejamentos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
@@ -33,6 +33,6 @@ class CreateCMecanizadoPlanejamentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_mecanizado_planejamentos_');
+        Schema::dropIfExists('c_mecanizado_planejamentos');
     }
 }

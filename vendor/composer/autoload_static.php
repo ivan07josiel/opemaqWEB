@@ -345,6 +345,7 @@ class ComposerStaticInit7ce8beebb9a9ac982e0289f4dd7275fc
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\CMecanizado' => __DIR__ . '/../..' . '/app/Models/CMecanizado.php',
+        'App\\Models\\CMecanizadoPlanejamento' => __DIR__ . '/../..' . '/app/Models/CMecanizadoPlanejamento.php',
         'App\\Models\\Funcao' => __DIR__ . '/../..' . '/app/Models/Funcao.php',
         'App\\Models\\Funcionario' => __DIR__ . '/../..' . '/app/Models/Funcionario.php',
         'App\\Models\\FuncionarioCMecanizado' => __DIR__ . '/../..' . '/app/Models/FuncionarioCMecanizado.php',

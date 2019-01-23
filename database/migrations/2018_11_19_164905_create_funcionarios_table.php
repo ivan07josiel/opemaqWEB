@@ -26,6 +26,7 @@ class CreateFuncionariosTable extends Migration
             
             $table->date('data_admissao');
             $table->date('data_nascimento');
+            $table->double('salario')->nullable();
             $table->double('encargos')->nullable();
             $table->double('insalubridade')->nullable();
             $table->double('periculosidade')->nullable();

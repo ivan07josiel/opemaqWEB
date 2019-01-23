@@ -55,8 +55,8 @@ class OperacaoController extends Controller
 
     public function delete($id)
     {
-        $this->getFuncionario($id)->delete();
-        return redirect(route('funcionarios.index'))->with('success', 'Funcionário excluido com sucesso!');
+        $this->getOperacao($id)->delete();
+        return redirect(route('analise.index'))->with('success', 'Operação excluida com sucesso!');
     }
 
     public function update(Request $request)

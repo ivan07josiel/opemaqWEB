@@ -66,9 +66,9 @@ function cctValidation() {
 
   if(isValid){
     // Recuperando valores dos campos
-    v = parseFloat($("#v").val());
+    v = parseFloat($("#vcct").val());
     l = parseFloat($("#l").val());
-    nump = parseFloat($("#nump").val());
+    nump = parseFloat($("#numpcct").val());
     
     cct =  v * l / (10 * nump);
     $(".cct").val(cct);
@@ -91,7 +91,7 @@ function cceValidation() {
     vcce = parseFloat($("#vcce").val());
     lcce = parseFloat($("#lcce").val());
     numpcce = parseFloat($("#numpcce").val());
-    ec = parseFloat($("#ec").val());
+    ec = parseFloat($("#eccce").val());
     
     cce =  vcce * lcce / (10 * numpcce) * ec;
     $(".cce").val(cce);
@@ -165,14 +165,22 @@ $('#btnnc').click(function(){
 
   if(isValid){
     // Recuperando valores dos campos
-    cce = parseFloat($("#ro").val());
-    cct = parseFloat($("#cco").val());
+    ro = parseFloat($("#ro").val());
+    cco = parseFloat($("#cco").val());
 
     nc =  (ro/cco);
     $("#nc").val(nc);
   }
   else {
     $("#nc").val("");
+  }
+});
+
+
+$("#btn_cadastrar").on('click', function(){
+  if($("#nc").val() =="" || $("#efc").val() ==""){
+    alert("Um ou mais campos em branco!");      
+    return false;
   }
 });
 

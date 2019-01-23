@@ -8,9 +8,10 @@ class Planejamento extends Model
 {
     // Define quais campos serão aceitos para inserção no BD
     protected $fillable = [
-        'id_usuario', 'nome', "td", "nt", "ndf", "nimp", "jt",
-        "eg", "ro", "at", "cct", "l", "v", "nump", "ec",
-        "cce", "tm", "tp", "ti", "tpr", "cco", "atot", "nc"
+        'id_usuario', 'nome', "id_operacao", "td", "nt", "ndf", "nimp", "jt",
+        "eg", "ro", "at", "cct", "l", "vcce", "numpcce", "eccce",
+        "cce", "tm", "tp", "ti", "tpr", "cco", "atot", "nc",
+        "numpcct", "vcct", "tpro", "timp", "efc"
     ];
 
     // Desativa recurso de BD timestamps do laravel
