@@ -121,10 +121,8 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="novo">Novo</label>
-                        <select class="form-control input-lg" id="novo" name="novo">
-                            <option value="sim" {{ $trator->novo == 'sim' ? 'selected' : '' }}>Sim</option>
-                            <option value="nao" {{ $trator->novo == 'nao' ? 'selected' : '' }}>Não</option>
-                        </select>
+                        <input type="text" class="form-control input-lg" value="{{$trator->novo}}" id="novo" name="novo">
+                        <small class="text-muted form-text">Valor de fábrica em R$</small>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="vida_util">Vida útil</label>

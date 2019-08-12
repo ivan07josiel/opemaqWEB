@@ -7,6 +7,10 @@
         min-height: 45px !important;
         text-align: center;
     }
+
+    input[data-readonly] {
+        pointer-events: none;
+    }
     </style>
 @endsection
 
@@ -250,7 +254,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="efc">Ec</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg" required id="efc" name="efc" readonly>
+                                        <input type="text" class="form-control input-lg" required id="efc" name="efc" data-readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>
@@ -278,7 +282,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="nc">Nc</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-lg" required id="nc" name="nc" readonly>
+                                        <input type="text" class="form-control input-lg" required id="nc" name="nc" data-readonly>
                                         <div class="input-group-btn">
                                             <p class="btn ml-5">=</p>
                                         </div>

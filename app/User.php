@@ -13,6 +13,7 @@ use App\Models\FuncionarioCMecanizado;
 use App\Models\Operacao;
 use App\Models\Planejamento;
 use App\Models\CMecanizadoPlanejamento;
+use App\Models\DesempenhoFixo;
 
 class User extends Authenticatable
 {
@@ -77,5 +78,9 @@ class User extends Authenticatable
     public function c_mecanizados_planejamentos()
     {
         return $this->hasMany(CMecanizadoPlanejamento::class, 'id_usuario');
+    }
+    public function desempenho_fixo()
+    {
+        return $this->hasMany(DesempenhoFixo::class, 'id_usuario');
     }
 }

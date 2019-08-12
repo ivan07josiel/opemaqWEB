@@ -28,5 +28,8 @@ class DatabaseSeeder extends Seeder
 
         // Roda seeders dos conjuntos mecanizados
         $this->call(CMecanizadosTableSeeder::class);
+
+        // Roda seeders das operaçãos 
+        $this->call(OperacaoTableSeeder::class);
     }
 }

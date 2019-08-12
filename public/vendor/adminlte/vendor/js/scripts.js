@@ -176,12 +176,8 @@ $('#btnnc').click(function(){
   }
 });
 
-
-$("#btn_cadastrar").on('click', function(){
-  if($("#nc").val() =="" || $("#efc").val() ==""){
-    alert("Um ou mais campos em branco!");      
-    return false;
-  }
+$('#nc, #efc').on('focus', function(){
+  $(this).trigger('blur');
 });
 
 // AJAX //
@@ -191,7 +187,7 @@ $.ajaxSetup({
   }
 });
 
-$('#operacao').change(function (){
+$('#id_operacao').change(function (){
   var idOperacao = $(this).val();
   
   $.ajax({

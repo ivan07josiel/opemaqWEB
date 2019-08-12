@@ -75,16 +75,60 @@ class PlanejamentoController extends Controller
 
     public function delete($id)
     {
-        $this->getFuncionario($id)->delete();
-        return redirect(route('funcionarios.index'))->with('success', 'Funcionário excluido com sucesso!');
+        $this->getPlanejamento($id)->delete();
+        return redirect(route('planejamento.index'))->with('success', 'Planejamento excluido com sucesso!');
     }
 
     public function update(Request $request)
     {
-        $operacao = $this->getOperacao($request->id);
-        $operacao->update($request->all());
+        // Realizando validação dos dados
+        $validacao = $this->validacao($request->all());
 
-        return redirect(route('analise.index'))->with('success', 'Operação editada com sucesso!');
+        if ($validacao->fails()) {
+            return redirect()->back()
+                    ->withErrors($validacao->errors())
+                    ->withInput($request->all());
+        }
+
+        try {
+            // Realizando a transação com o BD
+            $result = DB::transaction(function() use($request){
+                // Remove todos os conjuntos já cadastrados com id no planejamento 
+                DB::table('c_mecanizado_planejamentos')->where('id_planejamento', $request->id)->delete();
+
+                //Realiza preenchimento da váriavel com conjuntos selecionados para inserção no BD
+                $conjuntos = array();
+                foreach ($request->conjuntos as $key => $id) {
+                    $conjuntos[$id] = array(
+                        'id_c_mecanizado' => $id,
+                        'id_usuario' => auth()->user()->id,
+                        'id_planejamento' => $request->id,
+                    );
+                }
+
+                // Inserindo os conjuntos selecionados no BD
+                CMecanizadoPlanejamento::insert($conjuntos);
+                
+                // Inserindo na tabela planejamentos
+                $planejamento = $this->getPlanejamento($request->id);;
+                $update = $planejamento->update($request->all());
+                
+                // Verifica se a inserção do planejamento ocorreu com sucesso
+                if ($update) {
+                    // Redireciona para página index de planejamentos com mensagem
+                    return redirect()->route('planejamento.index')
+                        ->with("success", "Planejamento editada com sucesso!");
+                }
+            });
+
+            // Se tudo ocorreu bem retorna com a mensagem de sucesso
+            return $result;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('planejamento.index')
+            ->with("error", "Erro ocorrido ao tentar criar Planejamento");
+        }
     }
 
     public function cadastrarView()
@@ -105,31 +149,42 @@ class PlanejamentoController extends Controller
 
     public function editarView($id)
     {
-        $operacao = $this->getOperacao($id);
-        $propriedades = auth()->user()->propriedades;
+        $operacoes = auth()->user()->operacoes;
+        $conjuntos = auth()->user()->c_mecanizados;
+        $planejamento = $this->getPlanejamento($id);
+        $conjuntosSelected = $this->getPlanejamentosSelected($id);
 
-        return view('admin.desempenho.analise.editar', [
-            'operacao' => $operacao,
-            'propriedades' => $propriedades,
+        return view('admin.desempenho.planejamento.editar', [
+            'operacoes' => $operacoes,
+            'conjuntos' => $conjuntos,
+            'planejamento' => $planejamento,
+            'conjuntosSelected' => $conjuntosSelected,
         ]);
     }
 
     public function excluirView($id)
     {
-        $operacao = $this->getOperacao($id);
-        $propriedade = auth()->user()->propriedades->find($operacao->id_propriedade);
-        return view('admin.desempenho.analise.deletar', [
+        $planejamento = $this->getPlanejamento($id);
+        $operacao = auth()->user()->operacoes->find($planejamento->id_operacao);
+        return view('admin.desempenho.planejamento.deletar', [
             'operacao' => $operacao,
-            'propriedade' => $propriedade,
+            'planejamento' => $planejamento,
         ]);
     }
 
+    protected function getPlanejamento($id){
+        return auth()->user()->planejamentos->find($id);
+    }
+    
     protected function getOperacao($id){
         return auth()->user()->operacoes->find($id);
     }
 
-    public function getLargura($idOperacao){
-        $operacao = $this->getOperacao($idOperacao);
+    public function getLargura($idOpcional=null, $idOperacao=null){
+        // Define o id correto para a variavel
+        $id = $idOpcional == null ? $idOperacao : $idOpcional;
+        
+        $operacao = $this->getOperacao($id);
         //dd($operacao);
         $largura = DB::table('propriedades')
                         ->where('propriedades.id', '=', $operacao->id_propriedade) 
@@ -138,6 +193,14 @@ class PlanejamentoController extends Controller
         
         return Response::json($largura);
         
+    }
+
+    // Conjuntos que pertencem ao planejamento
+    protected function getPlanejamentosSelected($id){
+        return DB::table('c_mecanizado_planejamentos as cmp')
+                    ->select('cmp.id_c_mecanizado')
+                    ->where('cmp.id_planejamento', '=', $id, 'AND', 'cmp.id_usuario', '=', auth()->user()->id)
+                    ->get();
     }
 
     private function validacao($data){

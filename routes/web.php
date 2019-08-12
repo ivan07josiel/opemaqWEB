@@ -11,7 +11,7 @@
 |
 */
 
-// Só entra nessas rotas se passa pelo middleware de autenticacao
+// Entra nessas rotas caso passe pelo middleware de autenticacao
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     
     // Rotas para paginas de configuracao
@@ -108,44 +108,30 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
             $this->post('editar', 'PlanejamentoController@update')->name('planejamento.update');
             $this->get('{id}/deletar', 'PlanejamentoController@excluirView')->name('planejamento.excluirView');
             $this->get('{id}/delete', 'PlanejamentoController@delete')->name('planejamento.delete');
-            $this->get('{idOperacao}/getlargura', 'PlanejamentoController@getLargura')->name('planejamento.getLargura');
-
-
+            $this->get('{idOperacao}/getlargura', 'PlanejamentoController@getLargura');
+            $this->get('{id}/{idOperacao}/getlargura', 'PlanejamentoController@getLargura')->name('planejamento.getLargura');
         });
         
-        // Rotas para paginas de funções 
-        $this->group(['prefix' => 'funcoes'], function(){
-            $this->get('/', 'FuncaoController@index')->name('funcoes.index');
-            $this->post('cadastrar', 'FuncaoController@store')->name('funcoes.store');
-            $this->get('cadastrar', 'FuncaoController@cadastrarView')->name('funcoes.cadastrar');
-            $this->get('{id}/editar', 'FuncaoController@editarView')->name('funcoes.editarView');
-            $this->post('editar', 'FuncaoController@update')->name('funcoes.update');
-            $this->get('{id}/deletar', 'FuncaoController@excluirView')->name('funcoes.excluirView');
-            $this->get('{id}/delete', 'FuncaoController@delete')->name('funcoes.delete');
-
-
+        // Rotas para paginas de desempenho fixo
+        $this->group(['prefix' => 'fixo'], function(){
+            $this->get('/', 'DesempenhoFixoController@index')->name('fixo.index');
+            $this->post('cadastrar', 'DesempenhoFixoController@store')->name('fixo.store');
+            $this->get('cadastrar', 'DesempenhoFixoController@cadastrarView')->name('fixo.cadastrar');
+            $this->get('{id}/editar', 'DesempenhoFixoController@editarView')->name('fixo.editarView');
+            $this->post('editar', 'DesempenhoFixoController@update')->name('fixo.update');
+            $this->get('{id}/deletar', 'DesempenhoFixoController@excluirView')->name('fixo.excluirView');
+            $this->get('{id}/delete', 'DesempenhoFixoController@delete')->name('fixo.delete');
+            $this->get('{idTrator}/getTrator', 'DesempenhoFixoController@getTrator');
+            $this->get('{id}/{idTrator}/getTrator', 'DesempenhoFixoController@getTrator')->name('fixo.getTrator');
         });
         
-        // Rotas para paginas de tratores/implementos 
-        $this->group(['prefix' => 'tratores-implementos'], function(){
-            $this->get('/', 'TratorController@index')->name('tratores.index');
-            $this->post('cadastrar', 'TratorController@store')->name('tratores.store');
-            $this->get('cadastrar', 'TratorController@cadastrarView')->name('tratores.cadastrar');
-            $this->get('{id}/editar', 'TratorController@editarView')->name('tratores.editarView');
-            $this->post('editar', 'TratorController@update')->name('tratores.update');
-            $this->get('{id}/deletar', 'TratorController@excluirView')->name('tratores.excluirView');
-            $this->get('{id}/delete', 'TratorController@delete')->name('tratores.delete');
-
-
-        });
     });
 
+    // Redireciona para página inicial
     $this->get('admin', 'AdminController@index')->name('admin.home');
     $this->get('/', 'AdminController@index')->name('home');
+    $this->get('home', 'AdminController@index')->name('home');
 });
-    
-// Rota para home quando não está logado
-//$this->get('/', 'Site\SiteController@index')->name('home');
 
 Auth::routes();
 
